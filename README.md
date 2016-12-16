@@ -1,18 +1,13 @@
-# upyun_plugins
-wordpress upyun cdn plugins
+# WP-upyun
+Wordpress upyun CDN with https
 
 === Upyun For Wordpress === 
 
-本插件为第三方提供，原作者cuelog，由于该插件长时间未维护，又拍云官网有更新，本人简单优化了下后台的配置界面。
+原作者 Cuelog[https://www.cuelog.com] ，基于第三方版本修改支持 https。
 
-### 视频教程
-https://techs.b0.upaiyun.com/videos/cdnpage/wordpress.html
 ### INSTALL
 
 1.下载插件复制到plugins目录
-
-      cd /www/wp-content/plugins/
-      git clone https://github.com/monkey-wenjun/upyun_plugins.git
-      mv upyun_plugins upyun
+      git clone https://github.com/KiritoMiao/wp-upyun
 2.登录WordPress后台开启插件      
 3.配置相关参数 点击开启插件
