@@ -281,7 +281,7 @@ class UpYunCloud {
 						$files = array_merge ( $files, $res );
 					}
 				} else {
-					$files [] = 'http://' . $this->option ['binding_url'] . $path . '/' . $ls ['name'];
+					$files [] = 'https://' . $this->option ['binding_url'] . $path . '/' . $ls ['name'];
 				}
 			}
 		}
@@ -300,7 +300,7 @@ class UpYunCloud {
 			&& ( $_POST ['post_type'] == 'page' || $_POST ['post_type'] == 'post' ) ) {
 			$home_url = addcslashes($_SERVER ['HTTP_HOST'], './');
 			$binding_url = addcslashes($this->option ['binding_url'], './');
-			preg_match_all ( '#<img.*?src=[\'|\"](http:\/\/(?!'.$home_url.'|'.$binding_url.').*?\.(?:jpg|jpeg|gif|png|icon|bmp))[\'|\"]#', stripslashes ( $content ), $matches );
+			preg_match_all ( '#<img.*?src=[\'|\"](https:\/\/(?!'.$home_url.'|'.$binding_url.').*?\.(?:jpg|jpeg|gif|png|icon|bmp))[\'|\"]#', stripslashes ( $content ), $matches );
 			if ( isset( $matches [1] ) ) {
 				set_time_limit ( 0 );
 				$images = $matches [1];
@@ -474,7 +474,7 @@ class UpYunCloud {
 					$count = count($files);
 					$err = array();
 					foreach ($files as $fs) {
-						$dfs = str_replace('http://', '', $fs);
+						$dfs = str_replace('https://', '', $fs);
 						$dfs = str_replace($this->option ['binding_url'], '', $dfs);
 						$res = $this->UPyun->deleteFile ( $dfs );
 						if($res === false) {
@@ -520,7 +520,7 @@ class UpYunCloud {
 				}
 			} else {
 				// 绑定域名
-				$this->option ['binding_url'] = str_replace ( 'http://', '', trim ( $_POST ['binding_url'], ' /' ) );
+				$this->option ['binding_url'] = str_replace ( 'https://', '', trim ( $_POST ['binding_url'], ' /' ) );
 				// 服务名
 				$this->option ['bucket_name'] = trim ( $_POST ['bucket_name'] );
 				// 用户名
@@ -533,7 +533,7 @@ class UpYunCloud {
 				$remote_upload_root = trim ( $_POST ['remote_upload_root'], ' /' );
 				$this->option ['remote_upload_root'] = empty ( $remote_upload_root ) ? '/' : '/' . $remote_upload_root;
 				// 文件根目录访问url
-				$this->option ['remote_upload_root_url'] = 'http://' . $this->option ['binding_url'] . rtrim( $this->option ['remote_upload_root'], '/' );
+				$this->option ['remote_upload_root_url'] = 'https://' . $this->option ['binding_url'] . rtrim( $this->option ['remote_upload_root'], '/' );
 				// 服务类型
 				$this->option ['is_normal'] = $_POST ['is_normal'] == 'Y' ? 'Y' : 'N';
 				// 是否上传后删除本地文件
@@ -655,7 +655,7 @@ class UpYunCloud {
 	<hr />
 	<?php screen_icon(); ?>
 	<h2>删除又拍云储存中的附件</h2>
-	<p>PS: 每行一个( 链接为又拍云的附件，例如：http://xxx.b0.upaiyun.com/wp-file/logo.png )</p>
+	<p>PS: 每行一个( 链接为又拍云的附件，例如：https://xxx.b0.upaiyun.com/wp-file/logo.png )</p>
 	<div>
 		<textarea id="delete_files" style="width: 100%; height: 150px; " ></textarea>
 	</div>
